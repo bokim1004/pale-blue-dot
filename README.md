@@ -1,16 +1,52 @@
-# React + Vite
+# 🌍 Pale Blue Dot
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> *"Look again at that dot. That's here. That's home. That's us."* — Carl Sagan
 
-Currently, two official plugins are available:
+Carl Sagan의 유명한 연설 **"Pale Blue Dot"** 에서 영감을 받아 만든 인터랙티브 웹 프로젝트입니다.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🔗 **[Live Demo](https://pale-blue-dot-five.vercel.app/)**
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 📸 Preview
 
-## Expanding the ESLint configuration
+<!-- 스크린샷을 추가하려면 아래 주석을 해제하세요 -->
+<!-- ![preview](public/preview.png) -->
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🛠 Tech Stack
+
+| 기술 | 설명 |
+|------|------|
+| [React](https://react.dev/) | UI 라이브러리 |
+| [Vite](https://vitejs.dev/) | 빌드 도구 및 개발 서버 |
+| [Vercel](https://vercel.com/) | 배포 플랫폼 |
+
+---
+
+## 📁 Project Structure
+
+```
+pale-blue-dot/
+├── public/          # 정적 파일 (이미지, 폰트 등)
+├── src/             # 소스 코드
+│   ├── components/  # React 컴포넌트
+│   ├── assets/      # 에셋 파일
+│   └── main.jsx     # 앱 진입점
+├── index.html
+├── vite.config.js
+└── package.json
+```
+
+---
+
+## 🌌 About
+
+Carl Sagan이 1990년, 보이저 1호가 태양계 가장자리에서 찍은 지구 사진을 보며 남긴 연설에서 이름을 따온 프로젝트입니다. 광활한 우주 속 티끌 같은 존재인 지구, 그리고 우리 인간의 이야기를 시각적으로 표현했습니다.
+
+---
+
+## 📄 License
+
+MIT License © [bokim1004](https://github.com/bokim1004)
