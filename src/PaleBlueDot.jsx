@@ -42,7 +42,7 @@ const SAGAN_QUOTES = [
   "이 모두가 태양빛 속에 떠다니는",
   "저 작은 먼지 위에서 살았습니다.",
   "",
-  "— 칼 세이건, 1994",
+  "— 칼 세이건",
 ];
 
 const PLANETS = [
@@ -604,8 +604,8 @@ export default function PaleBlueDot() {
             border: "1px solid rgba(100,140,200,.2)", padding: "10px 22px",
             cursor: "pointer", letterSpacing: ".15em", borderRadius: 4,
           }}
-          onMouseEnter={e => { e.target.style.color = "rgba(160,190,255,.8)"; e.target.style.borderColor = "rgba(120,160,220,.4)"; }}
-          onMouseLeave={e => { e.target.style.color = "rgba(140,170,220,.5)"; e.target.style.borderColor = "rgba(100,140,200,.2)"; }}
+            onMouseEnter={e => { e.target.style.color = "rgba(160,190,255,.8)"; e.target.style.borderColor = "rgba(120,160,220,.4)"; }}
+            onMouseLeave={e => { e.target.style.color = "rgba(140,170,220,.5)"; e.target.style.borderColor = "rgba(100,140,200,.2)"; }}
           >다시 떠나기 ↗</button>
         </div>
       )}
