@@ -41,7 +41,7 @@ export const SAGAN_QUOTES = [
     "이 모두가 태양빛 속에 떠다니는",
     "저 작은 먼지 위에서 살았습니다.",
     "",
-    "— 칼 세이건",
+    "칼 세이건",
 ];
 
 export const PLANETS = [
