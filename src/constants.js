@@ -55,4 +55,4 @@ export const PLANETS = [
     { name: "Neptune", label: "해왕성", dist: 0.70, size: 3.5, color: "#4466cc", speed: 0.0015, angle: 1.7 },
 ];
 
-export const PBD = { relX: 0.62, relY: 0.48, glow: 0.1, pulse: 0.008, size: 1.5 };
+export const PBD = { relX: 0.62, relY: 0.48, glow: 0.25, pulse: 0.012, size: 2.5 };

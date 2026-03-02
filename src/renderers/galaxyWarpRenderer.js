@@ -121,15 +121,28 @@ export function renderGalaxyWarp(ctx, S, ts, kick) {
         const isH = m.active && mD < 35;
         S.hovered = isH;
         const hG = isH ? .55 : 0;
-        const fG = Math.min(1, PBD.glow + pulse * .08 + hG);
-        const gS = isH ? 48 : 22;
+        const fG = Math.min(1, PBD.glow + pulse * .15 + hG);
+        const gS = isH ? 52 : 32;
+
+        // 외곽 숨쉬기 글로우
+        const breathe = Math.sin(f * 0.015) * .5 + .5;
+        const outerG = ctx.createRadialGradient(dx2, dy2, 0, dx2, dy2, gS * 1.8);
+        outerG.addColorStop(0, `rgba(80,140,255,${breathe * .08})`);
+        outerG.addColorStop(.5, `rgba(60,120,255,${breathe * .03})`);
+        outerG.addColorStop(1, "transparent");
+        ctx.fillStyle = outerG;
+        ctx.beginPath(); ctx.arc(dx2, dy2, gS * 1.8, 0, Math.PI * 2); ctx.fill();
+
+        // 메인 글로우
         const oG = ctx.createRadialGradient(dx2, dy2, 0, dx2, dy2, gS);
-        oG.addColorStop(0, `rgba(100,150,255,${fG * .45})`);
-        oG.addColorStop(.3, `rgba(80,130,255,${fG * .15})`);
+        oG.addColorStop(0, `rgba(100,150,255,${fG * .6})`);
+        oG.addColorStop(.3, `rgba(80,130,255,${fG * .25})`);
         oG.addColorStop(1, "transparent");
         ctx.fillStyle = oG;
         ctx.beginPath(); ctx.arc(dx2, dy2, gS, 0, Math.PI * 2); ctx.fill();
-        ctx.fillStyle = `rgba(140,180,255,${.5 + fG * .5})`;
+
+        // 점 본체
+        ctx.fillStyle = `rgba(140,190,255,${.6 + fG * .4})`;
         ctx.beginPath(); ctx.arc(dx2, dy2, PBD.size, 0, Math.PI * 2); ctx.fill();
 
         if (isH) S.tooltip.alpha = Math.min(1, S.tooltip.alpha + .03);
