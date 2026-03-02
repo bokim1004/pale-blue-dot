@@ -1,6 +1,8 @@
 import { PHASE } from "./constants";
 import usePhaseManager from "./hooks/usePhaseManager";
 
+const isTouchDevice = () => "ontouchstart" in window;
+
 // ═══════════════════════════════════════════════════════════════
 //  PaleBlueDot – 순수 뷰 레이어
 // ═══════════════════════════════════════════════════════════════
@@ -15,7 +17,7 @@ export default function PaleBlueDot() {
       {S.phase === PHASE.GALAXY && (
         <div style={{ position: "fixed", bottom: 44, left: 0, right: 0, textAlign: "center", pointerEvents: "none", animation: "fadeUp 3s ease-out forwards" }}>
           <p style={{ fontFamily: '"Courier New",monospace', fontSize: 12, color: "rgba(140,170,220,.3)", letterSpacing: ".2em", margin: 0 }}>
-            은하수 속에서 빛나는 점을 찾으세요
+            {isTouchDevice() ? "은하수 속 빛나는 점을 터치하세요" : "은하수 속에서 빛나는 점을 찾으세요"}
           </p>
         </div>
       )}
@@ -31,7 +33,7 @@ export default function PaleBlueDot() {
       {S.phase === PHASE.SOLAR && S.solarAlpha > .8 && (
         <div style={{ position: "fixed", bottom: 44, left: 0, right: 0, textAlign: "center", pointerEvents: "none", animation: "fadeUp 2.5s ease-out 1.5s forwards", opacity: 0 }}>
           <p style={{ fontFamily: '"Courier New",monospace', fontSize: 12, color: "rgba(140,170,220,.32)", letterSpacing: ".15em", margin: 0 }}>
-            창백한 푸른 점을 찾으세요
+            {isTouchDevice() ? "창백한 푸른 점을 터치하세요" : "창백한 푸른 점을 찾으세요"}
           </p>
         </div>
       )}

@@ -51,18 +51,40 @@ export default function usePhaseManager() {
         return () => window.removeEventListener("resize", initCanvas);
     }, [initCanvas]);
 
-    // ─── Mouse tracking ──────────────────────────────────────────
+    // ─── Mouse & Touch tracking ────────────────────────────────
     useEffect(() => {
-        const onM = (e) => {
-            S.mouse = { x: e.clientX, y: e.clientY, active: true };
+        const updatePointer = (x, y) => {
+            S.mouse = { x, y, active: true };
             S.lastMouseMove = Date.now();
         };
-        const onL = () => { S.mouse.active = false; };
-        window.addEventListener("mousemove", onM);
-        window.addEventListener("mouseleave", onL);
+
+        // Mouse
+        const onMouseMove = (e) => updatePointer(e.clientX, e.clientY);
+        const onMouseLeave = () => { S.mouse.active = false; };
+
+        // Touch
+        const onTouchStart = (e) => {
+            const t = e.touches[0];
+            updatePointer(t.clientX, t.clientY);
+        };
+        const onTouchMove = (e) => {
+            e.preventDefault(); // 스크롤 방지
+            const t = e.touches[0];
+            updatePointer(t.clientX, t.clientY);
+        };
+        const onTouchEnd = () => { S.mouse.active = false; };
+
+        window.addEventListener("mousemove", onMouseMove);
+        window.addEventListener("mouseleave", onMouseLeave);
+        window.addEventListener("touchstart", onTouchStart, { passive: true });
+        window.addEventListener("touchmove", onTouchMove, { passive: false });
+        window.addEventListener("touchend", onTouchEnd);
         return () => {
-            window.removeEventListener("mousemove", onM);
-            window.removeEventListener("mouseleave", onL);
+            window.removeEventListener("mousemove", onMouseMove);
+            window.removeEventListener("mouseleave", onMouseLeave);
+            window.removeEventListener("touchstart", onTouchStart);
+            window.removeEventListener("touchmove", onTouchMove);
+            window.removeEventListener("touchend", onTouchEnd);
         };
     }, []);
 

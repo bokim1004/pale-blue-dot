@@ -109,16 +109,23 @@ export function renderSolarQuote(ctx, S, ts, kick) {
                 const imx = (m.x - cx) / camS + cx - camX;
                 const imy = (m.y - cy) / camS + cy - camY;
                 const ed = Math.sqrt((imx - px) ** 2 + (imy - py) ** 2);
-                S.earthHovered = m.active && ed < 28;
-                if (S.earthHovered) {
+                const isTouchDevice = "ontouchstart" in window;
+                const hitRadius = isTouchDevice ? 45 : 28;
+                S.earthHovered = m.active && ed < hitRadius;
+
+                // 지구 펄스 링 (모바일: 항상 표시 / 데스크톱: 호버 시)
+                const showRing = S.earthHovered || (isTouchDevice && alpha > .8);
+                if (showRing) {
                     const pr = 10 + Math.sin(f * .05) * 5;
-                    ctx.strokeStyle = `rgba(74,158,255,${.3 + Math.sin(f * .05) * .15})`;
+                    const ringAlpha = S.earthHovered ? .3 + Math.sin(f * .05) * .15 : .15 + Math.sin(f * .03) * .08;
+                    ctx.strokeStyle = `rgba(74,158,255,${ringAlpha})`;
                     ctx.lineWidth = 1;
                     ctx.beginPath(); ctx.arc(px, py, pr, 0, Math.PI * 2); ctx.stroke();
                     ctx.save();
                     ctx.font = '11px "Courier New",monospace';
                     ctx.textAlign = "center";
-                    ctx.fillStyle = "rgba(140,185,255,.75)";
+                    const labelAlpha = S.earthHovered ? .75 : .4;
+                    ctx.fillStyle = `rgba(140,185,255,${labelAlpha})`;
                     ctx.fillText("여기", px, py - 20);
                     ctx.restore();
                 }
