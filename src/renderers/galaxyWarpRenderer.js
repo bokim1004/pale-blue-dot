@@ -152,7 +152,7 @@ export function renderGalaxyWarp(ctx, S, ts, kick) {
             ctx.font = '13px "Courier New",monospace';
             ctx.textAlign = "center";
             ctx.fillStyle = `rgba(160,190,255,${S.tooltip.alpha * .85})`;
-            ctx.fillText("여기서 모든 일이 일어났다", dx2, dy2 - 30);
+            ctx.fillText("모든 것이, 여기서 일어났다", dx2, dy2 - 30);
             ctx.restore();
         }
     }
