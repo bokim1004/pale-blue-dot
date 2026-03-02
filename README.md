@@ -1,52 +1,179 @@
-# 🌍 Pale Blue Dot
+# 🌍 Pale Blue Dot — 창백한 푸른 점
 
-> *"Look again at that dot. That's here. That's home. That's us."* — Carl Sagan
+> *"저 점을 다시 보세요. 저기 저 점이요. 그곳이 여기입니다. 그곳이 우리의 집입니다."*
+> — 칼 세이건
 
-Carl Sagan의 유명한 연설 **"Pale Blue Dot"** 에서 영감을 받아 만든 인터랙티브 웹 프로젝트입니다.
+칼 세이건의 **"Pale Blue Dot"** 연설에서 영감을 받은 인터랙티브 웹 체험입니다.
+은하수 한가운데서 시작해, 워프를 거쳐 태양계에 도착하고, 지구로 줌인하며 칼 세이건의 메시지를 타이핑 애니메이션으로 만나게 됩니다.
 
-🔗 **[Live Demo](https://pale-blue-dot-five.vercel.app/)**
-
----
-
-## 📸 Preview
-
-<!-- 스크린샷을 추가하려면 아래 주석을 해제하세요 -->
-<!-- ![preview](public/preview.png) -->
+모든 시각 효과는 **Canvas 2D API**로 렌더링되며, 외부 그래픽 라이브러리 없이 순수 JavaScript로 구현되었습니다.
 
 ---
 
-## 🛠 Tech Stack
+## ✨ 주요 기능
 
-| 기술 | 설명 |
+| 기능 | 설명 |
 |------|------|
-| [React](https://react.dev/) | UI 라이브러리 |
-| [Vite](https://vitejs.dev/) | 빌드 도구 및 개발 서버 |
-| [Vercel](https://vercel.com/) | 배포 플랫폼 |
+| 🌌 **은하수 시뮬레이션** | 1,600개의 별, 성운 구름, 은하수 띠를 4개 depth 레이어로 패럴랙스 렌더링 |
+| 🖱️ **커서 인터랙션** | 마우스를 움직이면 별들이 밀려나고, 은하수가 시차 효과로 반응 |
+| 🚀 **워프 전환** | 창백한 푸른 점을 클릭하면 별들이 스트레칭되며 워프 진입, 거리 카운터와 속도 표시 |
+| ☀️ **태양계 모드** | 8개 행성이 실제 비율(축소)로 공전, 토성 고리 렌더링 포함 |
+| 🌏 **지구 줌인** | 지구 클릭 시 카메라가 부드럽게 줌인하며 인용문 페이즈로 전환 |
+| ✍️ **타이핑 애니메이션** | 칼 세이건의 연설이 한 줄씩 타이핑 커서와 함께 표시 |
+| 🔄 **리플레이** | 모든 연출이 끝나면 "다시 떠나기" 버튼으로 처음부터 재체험 가능 |
 
 ---
 
-## 📁 Project Structure
+## 🎬 체험 흐름
 
 ```
-pale-blue-dot/
-├── public/          # 정적 파일 (이미지, 폰트 등)
-├── src/             # 소스 코드
-│   ├── components/  # React 컴포넌트
-│   ├── assets/      # 에셋 파일
-│   └── main.jsx     # 앱 진입점
-├── index.html
-├── vite.config.js
-└── package.json
+Galaxy  →  Warp  →  Solar System  →  Earth Zoom  →  Quote
+  │          │           │                │            │
+  │          │           │                │            └─ 칼 세이건 연설 타이핑
+  │          │           │                └─ 카메라 줌인 (×21 스케일)
+  │          │           └─ 8개 행성 공전, 지구 호버 "여기"
+  │          └─ 별 스트레칭, 거리 카운터, 속도 표시
+  └─ 은하수 + 성운, 패럴랙스, 커서 반발, PBD 힌트 "여기서 모든 일이 일어났다"
 ```
 
 ---
 
-## 🌌 About
+## 🛠️ 기술 스택
 
-Carl Sagan이 1990년, 보이저 1호가 태양계 가장자리에서 찍은 지구 사진을 보며 남긴 연설에서 이름을 따온 프로젝트입니다. 광활한 우주 속 티끌 같은 존재인 지구, 그리고 우리 인간의 이야기를 시각적으로 표현했습니다.
+- **React 19** — 컴포넌트 및 상태 관리
+- **Canvas 2D API** — 모든 시각 렌더링 (Three.js, WebGL 미사용)
+- **Vite 7** — 빌드 및 개발 서버
+- **Vanilla JavaScript** — 외부 애니메이션/그래픽 라이브러리 없음
 
 ---
 
-## 📄 License
+## 🚀 시작하기
 
-MIT License © [bokim1004](https://github.com/bokim1004)
+### 설치
+
+```bash
+git clone https://github.com/bokim1004/pale-blue-dot.git
+cd pale-blue-dot
+npm install
+```
+
+### 개발 서버 실행
+
+```bash
+npm run dev
+```
+
+브라우저에서 `http://localhost:5173`으로 접속합니다.
+
+### 프로덕션 빌드
+
+```bash
+npm run build
+npm run preview
+```
+
+---
+
+## 📁 프로젝트 구조
+
+```
+src/
+├── constants.js                  # 상수, 설정값, 데이터
+│                                   (PHASE, PLANETS, SAGAN_QUOTES, PBD 등)
+│
+├── helpers.js                    # 유틸리티 함수
+│                                   (createStars, createNebula, createBgStars, easeInOutCubic)
+│
+├── hooks/
+│   └── usePhaseManager.js        # 🧠 비즈니스 로직 (커스텀 훅)
+│                                   - 상태 관리 (phase, mouse, drift, warp 등)
+│                                   - Canvas 초기화 및 리사이즈
+│                                   - 마우스 이벤트 트래킹
+│                                   - requestAnimationFrame 루프 오케스트레이션
+│                                   - 클릭 / 리셋 핸들러
+│
+├── renderers/
+│   ├── index.js                  # barrel export
+│   ├── galaxyWarpRenderer.js     # 🎨 Galaxy + Warp 페이즈 Canvas 렌더링
+│   │                               - 성운, 별 필드, 패럴랙스, 커서 반발
+│   │                               - PBD 힌트, 워프 스트레칭, 거리 카운터
+│   │                               - 필름 그레인 효과
+│   └── solarQuoteRenderer.js     # 🎨 Solar + EarthZoom + Quote 페이즈 Canvas 렌더링
+│                                   - 태양, 행성 공전, 궤도선, 토성 고리
+│                                   - 지구 호버 인터랙션, 카메라 줌
+│                                   - 인용문 타이핑 애니메이션, 비네트 효과
+│
+├── PaleBlueDot.jsx               # 👁️ 순수 뷰 레이어 (JSX UI)
+│                                   - usePhaseManager 훅에서 상태와 핸들러를 받아옴
+│                                   - Canvas + phase별 오버레이 UI만 렌더링
+│
+├── App.jsx                       # 앱 루트
+├── main.jsx                      # 진입점
+├── index.css                     # 글로벌 스타일
+└── App.css                       # 앱 스타일
+```
+
+### 아키텍처 원칙
+
+이 프로젝트는 **비즈니스 로직과 뷰 로직의 명확한 분리**를 따릅니다:
+
+```
+┌─────────────────────────────────────────────┐
+│           PaleBlueDot.jsx (뷰)              │
+│  JSX 마크업, CSS 애니메이션, 이벤트 바인딩    │
+└─────────────┬───────────────────────────────┘
+              │ usePhaseManager()
+┌─────────────▼───────────────────────────────┐
+│       hooks/usePhaseManager.js (로직)        │
+│  상태 관리, 이벤트 처리, 애니메이션 루프       │
+└─────────────┬───────────────────────────────┘
+              │ renderGalaxyWarp() / renderSolarQuote()
+┌─────────────▼───────────────────────────────┐
+│         renderers/*.js (렌더링)              │
+│  Canvas 2D 드로잉, 시각 효과 계산            │
+└─────────────┬───────────────────────────────┘
+              │
+┌─────────────▼───────────────────────────────┐
+│  constants.js / helpers.js (데이터 & 유틸)   │
+│  상수, 설정값, 팩토리 함수, 이징 함수         │
+└─────────────────────────────────────────────┘
+```
+
+---
+
+## ⚙️ 주요 설정값
+
+`constants.js`에서 체험의 핵심 파라미터를 조정할 수 있습니다:
+
+| 상수 | 기본값 | 설명 |
+|------|--------|------|
+| `STAR_COUNT` | `1600` | 은하수 별 개수 |
+| `DEPTH_LAYERS` | `4` | 패럴랙스 깊이 레이어 수 |
+| `CURSOR_RADIUS` | `120` | 마우스 커서 영향 반경 (px) |
+| `CURSOR_FORCE` | `0.8` | 커서 반발력 강도 |
+| `DRIFT_SPEED` | `0.15` | 유휴 시 자동 드리프트 속도 |
+| `PARALLAX_STRENGTH` | `0.035` | 시차 효과 강도 |
+
+---
+
+## 🎮 조작 방법
+
+1. **마우스 이동** — 별들이 마우스에 반응하여 밀려남 + 패럴랙스 효과
+2. **빛나는 점 클릭** — 은하수에서 창백한 푸른 점을 찾아 클릭하면 워프 시작
+3. **지구 클릭** — 태양계에서 지구 위에 마우스를 올리면 "여기" 표시, 클릭하면 줌인
+4. **다시 떠나기** — 인용문이 끝나면 우측 하단 버튼으로 처음부터 다시 체험
+
+---
+
+## 📜 라이선스
+
+MIT License
+
+---
+
+## 🙏 영감
+
+이 프로젝트는 1990년 보이저 1호가 약 60억 km 거리에서 찍은 지구 사진과,
+이를 보며 칼 세이건이 남긴 연설 **"Pale Blue Dot"**에서 영감을 받았습니다.
+
+> *"이 모두가 태양빛 속에 떠다니는 저 작은 먼지 위에서 살았습니다."*
