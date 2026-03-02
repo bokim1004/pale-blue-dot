@@ -207,10 +207,10 @@ function renderQuoteText(ctx, S, ts, kick, w, h) {
         if (isEmpty) continue;
 
         ctx.font = isAttr
-            ? `italic ${fs * .82}px "Courier New",monospace`
+            ? `italic ${fs * .88}px "Courier New",monospace`
             : `${fs}px "Courier New",monospace`;
         ctx.fillStyle = isAttr
-            ? `rgba(120,150,200,${fA * .45})`
+            ? `rgba(160,185,230,${fA * .75})`
             : `rgba(200,215,245,${fA * line.alpha * .88})`;
         ctx.fillText(line.text, tx, y);
 
